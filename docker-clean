@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# DOCKER CLEAN
+# removes old containers and images that are 'dangling' such as old versions of images etc
+
+# clear unused/finished containers
+docker ps -q -a | xargs docker rm
+
+# clear old/dangling images
+docker rmi $(sudo docker images -f "dangling=true" -q)
